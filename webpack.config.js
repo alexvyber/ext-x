@@ -43,6 +43,7 @@ var options = {
     contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'index.js'),
     devtools: path.join(__dirname, 'src', 'pages', 'Devtools', 'index.js'),
     panel: path.join(__dirname, 'src', 'pages', 'Panel', 'index.jsx'),
+    right: path.join(__dirname, 'src', 'pages', 'Right', 'index.js'),
   },
   chromeExtensionBoilerplate: {
     notHotReload: ['background', 'contentScript', 'devtools'],
@@ -52,6 +53,9 @@ var options = {
     path: path.resolve(__dirname, 'build'),
     clean: true,
     publicPath: ASSET_PATH,
+  },
+    experiments: {
+    topLevelAwait: true,
   },
   module: {
     rules: [
@@ -66,12 +70,15 @@ var options = {
           {
             loader: 'css-loader',
           },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
+            {
+                loader: 'postcss-loader',
             },
-          },
+          // {
+          //   loader: 'sass-loader',
+          //   options: {
+          //     sourceMap: true,
+          //   },
+          // },
         ],
       },
       {
